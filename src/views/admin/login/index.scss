@@ -1,0 +1,19 @@
+.login-app{
+    
+    margin: 36px auto;
+    width: 320px;
+    .img {
+        animation: App-logo-spin infinite 20s linear;
+        width: 100%;
+    }
+
+}
+
+@keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }

@@ -1,0 +1,99 @@
+@url=http://localhost:3001/admin/api
+
+###
+GET {{url}}/user/getUserList?page=1$pageSize=10
+
+###
+DELETE {{url}}/user/delete/5d58133811fea206c0f9a022
+
+###
+POST {{url}}/register
+Content-Type: application/json
+
+{
+    "username": "leech123",
+    "password": "123456"
+}
+
+###
+DELETE {{url}}/delete/5d35b26936b84660d431c275
+
+###
+POST {{url}}/login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "123456"
+}
+
+###
+POST {{url}}/tag/create
+Content-Type: application/json
+
+{
+  "name": "webpack"
+}
+
+###
+GET {{url}}/tags/getList
+
+###
+GET {{url}}/tags/getArticles?page=1&pageSize=15&name=MySQL
+
+### 
+DELETE {{url}}/tag/5d3b06e728c33135503d9125
+
+
+###
+POST {{url}}/category/create
+Content-Type: application/json
+
+{
+  "name": "Mongoose"
+}
+
+###
+GET {{url}}/category
+
+###
+GET {{url}}/categories/getList
+
+
+###
+GET {{url}}/categories/getArticles?page=1&pageSize=15&name=MySQL
+
+### 
+DELETE {{url}}/category/5d5218caf14d981f80b0c6c9
+
+###
+POST {{url}}/article/create
+Content-Type: application/json
+
+{
+  "title": "test11",
+  "content": "test11",
+  "categories": ["JavaScript"],
+  "tags": ["Mongoose"]
+}
+
+###
+PUT  {{url}}/article/update/5d41226d58df7d4ab8737f5a
+Content-Type: application/json
+
+{
+  "showOrder": 0
+  # "title": "test4",
+  # "content": "test4",
+  # "categories": ["5d36bf43536d2455fc296b6c"],
+  # "tags": ["5d36bf41536d2455fc296b6b", "5d36b9c57d832e03ac212586"]
+}
+
+###
+GET {{url}}/article/getList?page=3&pageSize=10
+
+###
+GET {{url}}/article/get/5d540a565b3bfe0e2489c46d
+
+###
+DELETE  {{url}}/article/delete/5d5409ea5b3bfe0e2489c46c

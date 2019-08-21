@@ -3,33 +3,42 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import routes from './routes/config'
-import Loading from './components/Loading'
+import Loading from './components/helper/Loading'
+import { getTags, getCategories } from './redux/article/actions'
+import { getWindowWidth } from './redux/common/actions'
 import './App.css';
 
-@connect(state => ({
-  isLogin: state.demo.isLogin
-}))
+@connect(state => state.user,
+  { getTags, getCategories, getWindowWidth }
+)
 class Root extends Component {
-
+  /**
+   * 根据路由表生成路由组件
+   * @param {Array} routes - 路由配置表
+   * @param {String} contextPath - 父级路径。比如后台 admin...
+   */
+  componentDidMount() {
+    this.props.getTags()
+    this.props.getCategories()
+    this.props.getWindowWidth()
+  }
   renderRoutes(routes, contextPath) {
     const children = []
 
     const renderRoute = (item, routeContextPath) => {
-      if (item.protected && !this.props.isLogin) {
+    // console.log('renderRoute', this.props)
+      let newContextPath = item.path ? `${routeContextPath}/${item.path}` : routeContextPath
+      newContextPath = newContextPath.replace(/\/+/g, '/')
+
+      if (newContextPath.includes('admin') && this.props.auth !== 1) {
+        console.log('redirect', this.props.auth)
         item = {
           ...item,
-          component: () => <Redirect to="/admin.login" />,
+          component: () => <Redirect to="/login" />,
           children: []
         }
       }
 
-      let newContextPath
-      if (/^\//.test(item.path)) {
-        newContextPath = item.path
-      } else {
-        newContextPath = `${routeContextPath}/${item.path}`
-      }
-      newContextPath = newContextPath.replace(/\/+/g, '/')
       if (item.component && item.childRoutes) {
         const childRoutes = this.renderRoutes(item.childRoutes, newContextPath)
         children.push(
@@ -55,12 +64,11 @@ class Root extends Component {
     return <Switch>{children}</Switch>
   }
   render() {
-    const children = this.renderRoutes(routes, '/')
+    const children = this.renderRoutes(routes, '/')    
     return (
       <BrowserRouter>
-        <Suspense fallback={<Loading />} >{children}</Suspense>
+        <Suspense fallback={<Loading />}>{children}</Suspense>
       </BrowserRouter>
-
     )
   }
 }

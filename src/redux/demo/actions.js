@@ -1,9 +1,9 @@
-import * as constants from '../constans'
+// import * as constants from '../constans'
 
-export const login = () => ({
-    type: constants.LOGIN
-})
+// export const login = () => ({
+//     type: constants.LOGIN
+// })
 
-export const loginout = () => ({
-    type: constants.LOGINOUT
-})
+// export const loginout = () => ({
+//     type: constants.LOGINOUT
+// })

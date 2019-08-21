@@ -1,9 +1,17 @@
-import adminRoutes from '../views/admin/routes'
+import homeRoutes from '../views/web/routes'
+import examplesRoute from '../examples/routes'
+import adminRoutes from '@/views/admin/routes'
+import rootRoutes from './rootRoutes'
 
 const childRoutes = [
     adminRoutes,
-
+    rootRoutes,
+    homeRoutes
+    // ...
 ]
+
+const isDev = process.env.NODE_ENV === 'development'
+if (isDev) childRoutes.unshift(examplesRoute)
 
 const routes = [
     ...childRoutes.filter(r => r.component || (r.childRoutes && r.childRoutes.length > 0))
