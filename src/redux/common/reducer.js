@@ -19,7 +19,8 @@ const defaultState = {
   colorMap: {},
   windowWidth: 0,
   drawerVisible: false,
-  
+  authModalVisible: false,
+  authModalType: ''
 }
 
 // reducer
@@ -45,6 +46,10 @@ export const commonReducer = (state = defaultState, action) => {
       return { ...state, drawerVisible: true }
     case constants.COMMON_CLOSE_DRAWER:
       return { ...state, drawerVisible: false }
+    case constants.AUTH_OPEN_AUTHMODAL:
+      return { ...state, authModalVisible: true, authModalType: payload }
+    case constants.AUTH_CLOSE_AUTHMODAL:
+      return { ...state, authModalVisible: false, authModalType: ''}
     default:
       return state
   }

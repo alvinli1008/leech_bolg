@@ -44,7 +44,7 @@ const BlogHeader = () => {
         </Col>
         <Col {...responsiveRight}>
           <Search />
-          {/* <UserInfo /> */}
+          <UserInfo />
           <Nav navList={navList} />
         </Col>
       </Row>

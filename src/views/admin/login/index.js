@@ -14,13 +14,12 @@ import './index.scss'
   { login }
 )
 class Login extends Component {
-
   state = {
     username: '',
     password: ''
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -42,9 +41,9 @@ class Login extends Component {
     console.log('login', this.props)
 
     return (
-      <div className="login-app">
-        <img className="img" src={logo} alt="" />
-        <Input 
+      <div className="login-form">
+        <img className="App-logo" src={logo} alt="" />
+        <Input
           size="large"
           prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
           style={{ marginBottom: 23 }}
@@ -53,28 +52,22 @@ class Login extends Component {
           value={this.state.username}
           onChange={this.handleChange}
         />
-        <Input 
-        size="large"
-        prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-        style={{ marginBottom: 23 }}
-        type="password"
-        name="password"
-        placeholder="Password"
-        value={this.state.password}
-        onChange={this.handleChange}
+        <Input
+          size="large"
+          prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+          style={{ marginBottom: 23 }}
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={this.state.password}
+          onChange={this.handleChange}
         />
-            <Button
-              block
-              size="large"
-              type="primary"
-              onClick={this.handleSubmit}
-            >
-              登录
-            </Button>
+        <Button block size="large" type="primary" onClick={this.handleSubmit}>
+          登录
+        </Button>
       </div>
     )
   }
 }
-
 
 export default Login

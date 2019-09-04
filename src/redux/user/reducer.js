@@ -20,6 +20,7 @@ export const demoReudcer = (state = defaultState, action) => {
     switch (type) {
         case constants.USER_LOGIN:
             const { username, auth, } = jwtDecode(payload.token)  // token 解析出username, auth
+            console.log('demoReudcer', auth)
             return { ...state, username, auth }
         case constants.USER_LOGINOUT:
             return { username: '', auth: 0, avtarColor: '#52c41a' }

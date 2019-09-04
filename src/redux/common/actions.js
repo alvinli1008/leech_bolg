@@ -17,3 +17,11 @@ export const openDrawer = () => ({
 export const closeDrawer = () => ({
   type: constants.COMMON_CLOSE_DRAWER
 })
+
+export const openAuthModal = payload => {
+  return { type: constants.AUTH_OPEN_AUTHMODAL, payload }
+}
+
+export const closeAuthModal = payload => {
+  return { type: constants.AUTH_CLOSE_AUTHMODAL, payload }
+}

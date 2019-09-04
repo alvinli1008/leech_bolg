@@ -7,6 +7,10 @@ import { openDrawer, closeDrawer, generateColorMap } from '../../../redux/common
 import Loading from '../../../components/helper/Loading';
 import Tags from '../Tags'
 import { Drawer, Icon, Divider } from 'antd'
+import './index.scss'
+
+
+import Comment from '../../../components/web/comment'
 
 
 @withRouter
@@ -55,15 +59,14 @@ class ArticleDetail extends Component {
         const { title, content, tags, categories, loading, postTime, commentList } = this.state
         return (
             <div className="content-inner-wrapper article">
-                Article
                 {loading ? (
                     <Loading />
                 ) : (
                     <React.Fragment>
-                        <div>
-                            <h1>{title}</h1>
+                        <div className="post-header">
+                            <h1 className="post-title">{title}</h1>
 
-                            <div>
+                            <div className="others">
                                 <i className="iconfont icon-post" />
                                 &nbsp; Posted on &nbsp;
                                 <span>{postTime}</span>
@@ -77,6 +80,30 @@ class ArticleDetail extends Component {
                         
                         <div className="article-detail" dangerouslySetInnerHTML={{ __html: content }} />
 
+                        {this.props.windowWidth > 1300 ? (
+                            <div className="right-navigation">
+                                {/* <Navigation /> */}
+                                123
+                            </div>
+                        ) : (
+                            <Fragment>
+                                <div className="drawer-btn" onClick={this.props.openDrawer}>
+                                    <Icon type="menu-o" className="nav-phone-icon" />
+                                </div>
+                                <Drawer
+                                    title={title}
+                                    placement="right"
+                                    closable={false}
+                                    onClose={this.props.closeDrawer}
+                                    visible={this.props.drawerVisible}
+                                >
+
+                                </Drawer>
+                            </Fragment>
+                        )}
+
+
+                        <Comment  />
                     </React.Fragment>
                 )}
             </div>

@@ -11,8 +11,9 @@ POST {{url}}/register
 Content-Type: application/json
 
 {
-    "username": "leech123",
-    "password": "123456"
+    "username": "admin",
+    "password": "123456",
+    "auth": 1
 }
 
 ###
